@@ -14,6 +14,7 @@ require 'db.php';
     <link rel="stylesheet" href="res/fontawesome/css/all.css" />
     <link rel="stylesheet" href="res/css/style.css" />
     <link rel="stylesheet" href="res/css/bottom.css" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" /> 
   </head>
   <body>
 
