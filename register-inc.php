@@ -5,6 +5,7 @@
           $email = trim($_POST['email']);
           $regNum = trim($_POST['reg']);
           $pass = $_POST['pass'];
+          $isPost = 0;
           
           if($firstName === " " && $regNum === " "){
                $_SESSION['error'] = 1;
@@ -30,7 +31,7 @@
                          header("Location:signup.php");
                          exit();
                     } else {
-                         $sql = " INSERT INTO users (firstName,regNum,password,email) VALUES (?, ?,?, ?)";
+                         $sql = " INSERT INTO users (firstName,regNum,password,email,isPost) VALUES (?, ?,?, ?,?)";
                          $stmt = mysqli_stmt_init($conn);
                          if (!mysqli_stmt_prepare($stmt, $sql)) {
                               $_SESSION['error'] = 1;
@@ -39,7 +40,7 @@
                               exit();
                          } else {
                               $hashedPass = password_hash($pass, PASSWORD_DEFAULT);
-                              mysqli_stmt_bind_param($stmt, "ssss", $firstName, $regNum,$hashedPass, $email);
+                              mysqli_stmt_bind_param($stmt, "sssss", $firstName, $regNum,$hashedPass, $email, $isPost);
                               mysqli_stmt_execute($stmt);
      
                               $sql = "SELECT * FROM users WHERE email = ?";

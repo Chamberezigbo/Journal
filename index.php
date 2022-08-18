@@ -76,7 +76,9 @@ require 'db.php';
       </div>
     </div>
 
-
+     <div class="container">
+          <p class="banner text-center mb-3"style="font-family:ibarrarealnova-variablefont;"> Current Post</p>
+     </div>
          <!-- card-post -->
      <?php
      $sql = "Select * from `users`";
@@ -92,9 +94,8 @@ require 'db.php';
               ?>
 
                <div class="container mb-5 pb-5">
-                    <p class="banner text-center mb-3"style="font-family:ibarrarealnova-variablefont;"> Current Post</p>
                <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-lg-12 mt-5">
                     <div class="card card-line">
                     <div class="card-header" style="font-family:ibarrarealnova-variablefont;">
                          <?= "This post was made by " .$firstName?>
@@ -129,8 +130,6 @@ require 'db.php';
                     </div>
                     </div>
                </div>
-               <?php } else {?>
-               <div class="text-center text-primary display-6"style="font-family:ibarrarealnova-variablefont;">No Content</div> 
      <?php } } } ?>
 
 
