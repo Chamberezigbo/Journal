@@ -27,7 +27,7 @@ if (!$_SESSION['auth']) {
     <link rel="stylesheet" href="res/fontawesome/css/all.css" />
     <link rel="stylesheet" href="res/css/style.css" />
     <link rel="stylesheet" href="res/css/bottom.css" />
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" /> 
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" /> 
   </head>
   <body>
 
