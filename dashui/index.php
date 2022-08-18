@@ -62,7 +62,7 @@ if (!$_SESSION['auth']) {
                      <div class="user_profle_side">
                         <div class="user_img"><img class="img-responsive" src="images/layout_img/user_img.jpg" alt="#" /></div>
                         <div class="user_info">
-                           <h6>Amin</h6>
+                           <h6>Admin</h6>
                            <p><span class="online_animation"></span> Online</p>
                         </div>
                      </div>
@@ -154,7 +154,7 @@ if (!$_SESSION['auth']) {
                                        <a class="dropdown-item" href="profile.html">My Profile</a>
                                        <a class="dropdown-item" href="settings.html">Settings</a>
                                        <a class="dropdown-item" href="help.html">Help</a>
-                                       <a class="dropdown-item" href="#"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
+                                       <a class="dropdown-item" href="../sign.out-inc.php"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
                                     </div>
                                  </li>
                               </ul>
