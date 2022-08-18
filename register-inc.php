@@ -21,7 +21,7 @@
                     session_start();
                     $_SESSION['error'] = 1;
                     $_SESSION['errorMassage'] = " Email has been taken";
-                    header("Location:index.php");
+                    header("Location:signup.php");
                     exit();
                } else {
                     $sql = " INSERT INTO users (firstName,regNum,password,email) VALUES (?, ?,?, ?)";
@@ -29,7 +29,7 @@
                     if (!mysqli_stmt_prepare($stmt, $sql)) {
                          $_SESSION['error'] = 1;
                          $_SESSION['errorMassage'] = " Error occurred with your login";
-                         header("Location:index.php");
+                         header("Location:signup.php");
                          exit();
                     } else {
                          $hashedPass = password_hash($pass, PASSWORD_DEFAULT);
@@ -41,7 +41,7 @@
                          if (!mysqli_stmt_prepare($stmt, $sql)) {
                               $_SESSION['error'] = 1;
                               $_SESSION['errorMassage'] = " Error occurred with your login try login in";
-                              header("Location:index.php");
+                              header("Location:signup.php");
                               exit();
                          } else {
                               mysqli_stmt_bind_param($stmt, "s", $email);

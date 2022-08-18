@@ -42,8 +42,8 @@ if (!$_SESSION['auth']) {
             <!-- <button class="navbar-toggler" style="border:none;" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button> -->
-            <!-- <div class="collapse navbar-collapse" id="navbarNavDropdown" style="margin-left:-135px;">
-              <ul class="navbar-nav mx-auto">
+            <div class="collapse navbar-collapse" id="navbarNavDropdown" style="margin-left:-135px;">
+              <!-- <ul class="navbar-nav mx-auto">
                 <li class="nav-item active">
                   <a class="nav-link ml-sm-3 text-dark font-weight-bold " style="font-size:20px;font-family:ibarrarealnova-variablefont;" href="index.html">Home</a>
                 </li>
@@ -53,16 +53,32 @@ if (!$_SESSION['auth']) {
                 <li class="nav-item">
                   <a class="nav-link ml-sm-3 text-dark font-weight-bold" style="font-size:20px;font-family:ibarrarealnova-variablefont;" href="contact.html">Contact</a>
                 </li>
-              </ul>
-              <div class="">
-                <a href="signup.html"><button type="button" class="btn btn-color " style="font-family:ibarrarealnova-variablefont;">Sign Up</button></a>
-                <a href="login.html"><button type="button" class="btn btn-color1"style="font-family:ibarrarealnova-variablefont;">Login</button></a>
+              </ul> -->
+              <div class="ms-auto">
+                <!-- <a href="signup.html"><button type="button" class="btn btn-color " style="font-family:ibarrarealnova-variablefont;">Sign Up</button></a> -->
+                <a href="sign.out-inc.php"><button type="button" class="btn btn-color1"style="font-family:ibarrarealnova-variablefont;">sign out</button></a>
               </div>
-            </div> -->
+            </div>
           </nav>
         </div>
       <!--navbar---->
     </div>
+
+     <?php require_once("register-inc.php"); ?>
+     <?php require_once("register-inc.php"); ?>
+     <?php if (isset($_SESSION['error']) &&  $_SESSION['error'] == 1) { ?>
+          <div class="container position-relative">
+               <div class="alert alert-success d-flex align-items-center position-absolute top-0 end-0 mt-5" id="alertActivation" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                         <use xlink:href="#check-circle-fill" />
+                    </svg>
+                    <div>
+                         <?php echo $_SESSION['errorMassage']; ?>
+                         <?php $_SESSION['error'] = 0   ?>
+                    </div>
+               </div>
+          </div>
+     <?php } ?>
 
 
     <!-- user posts -->
@@ -80,26 +96,28 @@ if (!$_SESSION['auth']) {
                 Make Post
               </button>
               <!-- Modal -->
-              <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="staticBackdropLabel" style="font-family:ibarrarealnova-variablefont;">Your Post</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      <div class="mb-3">
-                        <!-- <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label> -->
-                        <textarea class="form-control" id="exampleFormControlTextarea1" style="font-family:ibarrarealnova-variablefont;border-color:#034191;"  placeholder="Your Post................................." rows="3"></textarea>
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-post" data-bs-dismiss="modal" style="font-family:ibarrarealnova-variablefont;">Close</button>
-                      <button type="button" class="btn btn-post" style="font-family:ibarrarealnova-variablefont;">Post</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <form action="post.inc.php" method="post">
+                   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                     <div class="modal-dialog">
+                       <div class="modal-content">
+                         <div class="modal-header">
+                           <h5 class="modal-title" id="staticBackdropLabel" style="font-family:ibarrarealnova-variablefont;">Your Post</h5>
+                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                         </div>
+                         <div class="modal-body">
+                           <div class="mb-3">
+                             <!-- <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label> -->
+                             <textarea class="form-control" name="article" id="post" maxlength = "300" style="font-family:ibarrarealnova-variablefont;border-color:#034191;"  placeholder="Your Post 200 maximum character" rows="3" required></textarea>
+                           </div>
+                         </div>
+                         <div class="modal-footer">
+                           <button type="button" class="btn btn-post" data-bs-dismiss="modal" style="font-family:ibarrarealnova-variablefont;">Close</button>
+                           <button type="submit" name="post" class="btn btn-post" style="font-family:ibarrarealnova-variablefont;">Post</button>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+              </form>
             <!-- button trigger modal end  -->
           </div>
           <div class="card-footer text-muted" style="font-family:ibarrarealnova-variablefont;">
@@ -177,6 +195,11 @@ if (!$_SESSION['auth']) {
     <script type="text/javascript" src="res/bootstrap/js/bootstrap.bundle.js"></script>
     <script type="text/javascript" src="res/bootstrap/js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="res/bootstrap/js/bootstrap.js"></script>
+     <script>
+         setInterval(function() {
+              let alertDev = document.getElementById('alertActivation').classList.add("d-none")
+         }, 3500);
+    </script>
   </body>
 </html>
 

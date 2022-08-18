@@ -7,7 +7,12 @@ if (isset($_POST['login'])) {
      $regNum = trim($_POST['regNum']);
 
      if ($email == "admin@mail.com" && $password == "admin12345") {
-          header("location:admin.php");
+          session_start();
+          $_SESSION['auth'] = true;
+          $_SESSION['start'] = time();
+          $_SESSION['expire'] = $_SESSION['start'] + (40 * 60);
+          $_SESSION['error'] = 0;
+          header("location:dashui/index.php");
      } else {
           $sql = "SELECT * FROM users WHERE email = ? AND regNum = ?";
           $stmt = mysqli_stmt_init($conn);
@@ -16,7 +21,7 @@ if (isset($_POST['login'])) {
                session_start();
                $_SESSION['error'] = 1;
                $_SESSION['errorMassage'] = " Error occurred with your login";
-               header("Location:index.php");
+               header("Location:login.php");
                exit();
           } else {
                mysqli_stmt_bind_param($stmt, "ss", $email, $regNum);
@@ -32,7 +37,7 @@ if (isset($_POST['login'])) {
                          $_SESSION['sessionId'] = $row['id'];
                          $_SESSION['firstName'] = $row['firstName'];
 
-                         header("Location:post.php");
+                         header("Location:user.php");
                     } else {
                          session_start();
                          $_SESSION['error'] = 1;
@@ -42,7 +47,7 @@ if (isset($_POST['login'])) {
                } else {
                     session_start();
                     $_SESSION['error'] = 1;
-                    $_SESSION['errorMassage'] = " Email or password not valid";
+                    $_SESSION['errorMassage'] = " Email, Reg Number or Password not valid";
                     header("Location:login.php");
                }
           }

@@ -1,18 +1,23 @@
-$(document).ready(function () {
-	$("#form").validate({
+$(function () {
+	$("form[name='submitRegister']").validate({
+		// Define validation rules
 		rules: {
+			fullName: "required",
+			reg: "required",
+			email: "required",
+			pass: "required",
+			confirmPass: "required",
 			fullName: {
 				required: true,
-				rangelength: [10, 12],
+				minlength: 3,
+			},
+			reg: {
+				required: true,
+				minlength: 3,
 			},
 			email: {
 				required: true,
 				email: true,
-			},
-			reg: {
-				required: true,
-				rangelength: [10, 12],
-				number: true,
 			},
 			pass: {
 				required: true,
@@ -20,26 +25,32 @@ $(document).ready(function () {
 			},
 			confirmPass: {
 				required: true,
-				equalTo: "#password",
+				minlength: 8,
+				equalTo: "#pass",
 			},
 		},
+		// Specify validation error messages
 		messages: {
-			fullName: "Please enter Name.",
-			email: {
-				required: "Please enter Email Address.",
-				email: "Please enter a valid Email Address.",
+			fullName: {
+				required: "Please provide a valid name.",
+				minlength: "Please provide a valid name.",
 			},
 			reg: {
-				required: "Please enter Contact.",
-				rangelength: "Contact should be 10 digit number.",
+				required: "Please provide a valid name.",
+				required: "Please provide a valid name.",
+			},
+			email: {
+				required: "Please enter your email",
+				minlength: "Please enter a valid email address",
 			},
 			pass: {
-				required: "Please enter Password.",
-				minlength: "Password must be at least 8 characters long.",
+				required: "Please enter a password",
+				minlength: "Password must be more than 8 character",
 			},
 			confirmPass: {
-				required: "Please enter Confirm Password.",
-				equalTo: "Confirm Password do not match with Password.",
+				required: "Please enter your confirm password",
+				minlength: "Password must be more than 8 character",
+				equalTo: "Password does't not match",
 			},
 		},
 		submitHandler: function (form) {

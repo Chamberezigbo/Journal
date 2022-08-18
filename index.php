@@ -1,7 +1,5 @@
 <?php
-session_start();
-require('register-inc.php');
-// require('login-inc.php');
+require 'db.php';
 ?>
 <!DOCTYPE php>
 <php lang="en" dir="ltr">
@@ -23,21 +21,6 @@ require('register-inc.php');
 
     <!-- navbar -->
       <div class="dii">
-          <?php require_once("register-inc.php"); ?>
-               <?php require_once("register-inc.php"); ?>
-               <?php if (isset($_SESSION['error']) &&  $_SESSION['error'] == 1) { ?>
-                    <div class="container position-relative mt-5">
-                         <div class="alert alert-danger d-flex align-items-center position-absolute top-0 end-0 mt-5" id="alertActivation" role="alert">
-                              <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
-                                   <use xlink:href="#check-circle-fill" />
-                              </svg>
-                              <div>
-                                   <?php echo $_SESSION['errorMassage']; ?>
-                                   <?php $_SESSION['error'] = 0   ?>
-                              </div>
-                         </div>
-                    </div>
-          <?php } ?>
         <div class="container mt-2">
           <nav class="navbar navbar-expand-lg navbar-light nav-bg sticky">
     	      <a class="navbar-brand ml-sm-3" href="#">
@@ -93,7 +76,61 @@ require('register-inc.php');
     </div>
 
 
+         <!-- card-post -->
+     <?php
+     $sql = "Select * from `users`";
+     $result = mysqli_query($conn, $sql);
+     if ($result) {
+          $num = 0;
+          while ($row = mysqli_fetch_assoc($result)) {
+               if($row['isPost'] == true){
+               $id = $row['id'];
+               $firstName = $row['firstName'];
+               $postArticle = $row['post'];
+               $email = $row['email'];
+              ?>
 
+               <div class="container mb-5 pb-5">
+                    <p class="banner text-center mb-3"style="font-family:ibarrarealnova-variablefont;"> Current Post</p>
+               <div class="row">
+                    <div class="col-sm-6">
+                    <div class="card card-line">
+                    <div class="card-header" style="font-family:ibarrarealnova-variablefont;">
+                         <?= "This post was made by " .$firstName?>
+                    </div>
+                    <div class="card-body">
+                         <h5 class="card-title" style="font-family:ibarrarealnova-variablefont;"><?= $email?></h5>
+                         <p class="card-text" style="font-family:ibarrarealnova-variablefont;"><?= "Madonna Computer Engineering Journal " .$postArticle?></p>
+                         <!-- Button trigger modal -->
+                         <button type="button" class="btn btn-post" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="font-family:ibarrarealnova-variablefont;">
+                              Read More
+                         </button>
+                         <!-- Modal -->
+                         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                              <div class="modal-content">
+                              <div class="modal-header">
+                                   <h5 class="modal-title" id="staticBackdropLabel" style="font-family:ibarrarealnova-variablefont;"><?= $firstName."s post"?></h5>
+                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                   <p  style="font-family:ibarrarealnova-variablefont;"><?= $postArticle?></p>
+                              </div>
+                              <div class="modal-footer">
+                                   <button type="button" class="btn btn-post" data-bs-dismiss="modal" style="font-family:ibarrarealnova-variablefont;">Close</button>
+                                   <button type="button" class="btn btn-post" style="font-family:ibarrarealnova-variablefont;">Report</button>
+                              </div>
+                              </div>
+                              </div>
+                         </div>
+                         <!-- button trigger modal end  -->
+                    </div>
+                    </div>
+                    </div>
+               </div>
+               <?php } else {?>
+               <div class="text-center text-primary display-6"style="font-family:ibarrarealnova-variablefont;">No Content</div> 
+     <?php } } } ?>
 
 
 

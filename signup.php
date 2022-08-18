@@ -1,3 +1,9 @@
+<?php
+session_start();
+require 'db.php';
+require('register-inc.php');
+?>
+
 <!DOCTYPE php>
 <html lang="en" dir="ltr">
   <head>
@@ -5,8 +11,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <title>The Journal</title>
-         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <link rel="stylesheet" href="res/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="res/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="res/bootstrap/icons" />
@@ -53,7 +57,21 @@
         </div>
 		  <!--navbar---->
     </div>
-
+     <?php require_once("register-inc.php"); ?>
+     <?php require_once("register-inc.php"); ?>
+     <?php if (isset($_SESSION['error']) &&  $_SESSION['error'] == 1) { ?>
+          <div class="container position-relative mt-5">
+               <div class="alert alert-danger d-flex align-items-center position-absolute top-0 end-0 mt-5" id="alertActivation" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                         <use xlink:href="#check-circle-fill" />
+                    </svg>
+                    <div>
+                         <?php echo $_SESSION['errorMassage']; ?>
+                         <?php $_SESSION['error'] = 0   ?>
+                    </div>
+               </div>
+          </div>
+     <?php } ?>
 
 
 
@@ -64,7 +82,7 @@
             <h1 class="text-center" style="font-family:ibarrarealnova-variablefont;font-weight:bold;color:#034191;">Hello 🙂​ !!</h1>
             <p class="text-center" style="font-family:ibarrarealnova-variablefont;font-weight:bold;color:#034191;">Would be nice to have an account with us!!</p>
           </div>
-          <form class="row g-3 d-block d-sm-none gig" id="form" action="register-inc.php" method="post" role="form">
+          <form class="row g-3 d-block d-sm-none gig" name="submitRegister" action="register-inc.php" method="post">
             <div class="col-sm-12 mt-5" >
               <label for="validationDefault01" class="form-label"   style="font-family:ibarrarealnova-variablefont;">Full Name</label>
               <input type="text" class="form-control w-100" id="fullName" name="fullName"  style="font-family:ibarrarealnova-variablefont;border-color:#034191;" value="" placeholder="Becca Thompson" required>
@@ -106,7 +124,7 @@
 
     <!-- login details -->
       <div class="container mt-5 d-none d-sm-block">
-        <form class="row g-3" id="form" action="register-inc.php" method="post"   role="form" enctype="multipart/form-data">
+        <form class="row g-3" action="register-inc.php" method="post" name="submitRegister" enctype="multipart/form-data">
           <div class="col-md-4">
             <label for="validationDefault01" class="form-label">Full Name</label>
             <input type="text" class="form-control" name="fullName" id="fullName" placeholder="Becca Thompson" value="" required>
@@ -209,10 +227,15 @@
 
 
 
-
-     
+     <script src = "https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> 
+     <script src = "https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.min.js"></script>
      <script type="text/javascript" src="res/bootstrap/js/bootstrap.bundle.js"></script>
      <script type="text/javascript" src="res/bootstrap/js/bootstrap.js"></script>
      <script src="res/js/form.validation.js"></script>
+     <script>
+         setInterval(function() {
+              let alertDev = document.getElementById('alertActivation').classList.add("d-none")
+         }, 3500);
+    </script>
   </body>
 </html>

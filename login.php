@@ -21,21 +21,6 @@ require('login-inc.php');
 
     <!-- navbar -->
       <div class="dii">
-          <?php require_once("register-inc.php"); ?>
-          <?php require_once("register-inc.php"); ?>
-          <?php if (isset($_SESSION['error']) &&  $_SESSION['error'] == 1) { ?>
-               <div class="container position-relative mt-5">
-                    <div class="alert alert-danger d-flex align-items-center position-absolute top-0 end-0 mt-5" id="alertActivation" role="alert">
-                         <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
-                              <use xlink:href="#check-circle-fill" />
-                         </svg>
-                         <div>
-                              <?php echo $_SESSION['errorMassage']; ?>
-                              <?php $_SESSION['error'] = 0   ?>
-                         </div>
-                    </div>
-               </div>
-          <?php } ?>
         <div class="container mt-2">
           <nav class="navbar navbar-expand-lg navbar-light nav-bg sticky">
     	      <a class="navbar-brand ml-sm-3" href="#">
@@ -71,6 +56,22 @@ require('login-inc.php');
 		  <!--navbar---->
     </div>
 
+     <?php require_once("register-inc.php"); ?>
+     <?php require_once("register-inc.php"); ?>
+     <?php if (isset($_SESSION['error']) &&  $_SESSION['error'] == 1) { ?>
+          <div class="container position-relative" style="margin-top: 60px;">
+               <div class="alert alert-danger d-flex align-items-center position-absolute top-0 end-0 mt-5" id="alertActivation" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                         <use xlink:href="#check-circle-fill" />
+                    </svg>
+                    <div>
+                         <?php echo $_SESSION['errorMassage']; ?>
+                         <?php $_SESSION['error'] = 0   ?>
+                    </div>
+               </div>
+          </div>
+     <?php } ?>
+
 
 
 
@@ -81,18 +82,18 @@ require('login-inc.php');
             <h1 class="text-center" style="font-family:ibarrarealnova-variablefont;font-weight:bold;color:#034191;">Hello Again 🙂​ !!</h1>
             <p class="text-center" style="font-family:ibarrarealnova-variablefont;font-weight:bold;color:#034191;">Welcome back you've been missed!!</p>
           </div>
-          <form class="row g-3 d-block d-sm-none gig">
+          <form class="row g-3 d-block d-sm-none gig"id="form" action="login-inc.php" method="post" role="form">
             <div class="col-sm-12 mt-5" >
               <label for="validationDefault01" class="form-label"   style="font-family:ibarrarealnova-variablefont;">Your Email</label>
-              <input type="email" class="form-control w-100" id="validationDefault01"  style="font-family:ibarrarealnova-variablefont;border-color:#034191;" value="" placeholder="example@gmail.com" required>
+              <input type="email" class="form-control w-100" id="email" name="email" style="font-family:ibarrarealnova-variablefont;border-color:#034191;" value="" placeholder="example@gmail.com" required>
             </div>
             <div class="col-sm-12">
               <label for="validationDefault01" class="form-label"   style="font-family:ibarrarealnova-variablefont;">Your Reg No</label>
-              <input type="text" class="form-control w-100" id="validationDefault01"  style="font-family:ibarrarealnova-variablefont;border-color:#034191;" value="" placeholder="CE/17/069" required>
+              <input type="text" class="form-control w-100" id="regNum" name="regNum"  style="font-family:ibarrarealnova-variablefont;border-color:#034191;" value="" placeholder="CE/17/069" required>
             </div>
             <div class="col-md-12">
               <label for="validationDefault02" class="form-label"  style="font-family:ibarrarealnova-variablefont;">Your Password</label>
-              <input type="password" class="form-control w-100" id="validationDefault02"  style="font-family:ibarrarealnova-variablefont;border-color:#034191;" value="" placeholder="*******" required>
+              <input type="password" class="form-control w-100" id="pass" name="password"  style="font-family:ibarrarealnova-variablefont;border-color:#034191;" value="" placeholder="*******" required>
             </div>
             <div class="mt-2">
               <span  style="font-family:ibarrarealnova-variablefont;color:#034191;">Don't have an account? <a href="signup.php" >Create Account</a></span>
@@ -106,7 +107,7 @@ require('login-inc.php');
               </div>
             </div>
             <div class="" >
-              <a href="user.php"><button type="button" class="btn btn-color " style="font-family:ibarrarealnova-variablefont;">Login</button></a>
+              <a href="#"><button type="submit" name="login" class="btn btn-color " style="font-family:ibarrarealnova-variablefont;">Login</button></a>
             </div>
           </form>
         </div>
@@ -119,15 +120,15 @@ require('login-inc.php');
           <form class="row g-3 gi" id="form" action="login-inc.php" method="post" role="form">
             <div class="col-sm-12">
               <label for="validationDefault01" class="form-label"   style="font-family:ibarrarealnova-variablefont;">Your Email</label>
-              <input type="email" class="form-control w-50" id="validationDefault01" name="email"  style="font-family:ibarrarealnova-variablefont;border-color:#034191;" value="" placeholder="example@gmail.com" required>
+              <input type="email" class="form-control w-50" id="email" name="email"  style="font-family:ibarrarealnova-variablefont;border-color:#034191;" value="" placeholder="example@gmail.com" required>
             </div>
             <div class="col-sm-12">
               <label for="validationDefault01" class="form-label"   style="font-family:ibarrarealnova-variablefont;">Your Reg No</label>
-              <input type="text" class="form-control w-50" id="validationDefault01" name="regNum"  style="font-family:ibarrarealnova-variablefont;border-color:#034191;" value="" placeholder="CE/17/069" required>
+              <input type="text" class="form-control w-50" id="regNum" name="regNum"  style="font-family:ibarrarealnova-variablefont;border-color:#034191;" value="" placeholder="CE/17/069" required>
             </div>
             <div class="col-md-12">
               <label for="validationDefault02" class="form-label"  style="font-family:ibarrarealnova-variablefont;">Your Password</label>
-              <input type="password" class="form-control w-50" id="validationDefault02" name="password"  style="font-family:ibarrarealnova-variablefont;border-color:#034191;" value="" placeholder="*******" required>
+              <input type="password" class="form-control w-50" id="pass" name="password"  style="font-family:ibarrarealnova-variablefont;border-color:#034191;" value="" placeholder="*******" required>
             </div>
             <span style="font-family:ibarrarealnova-variablefont;color:#034191;">Don't have an account? <a href="signup.php">Click here to create account</a></span>
             <div class="col-12 mt-2">
